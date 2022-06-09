@@ -1,0 +1,11 @@
+[Unit]
+Description=Printer Listener
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /home/kassa/scripts/printer_listener.py
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

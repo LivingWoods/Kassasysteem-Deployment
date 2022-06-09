@@ -12,6 +12,33 @@ sudo mkdir /home/kassa/docker
 # Copy compose file to docker folder
 sudo cp docker-compose.yml /home/kassa/docker
 
+# Create folder for Script
+sudo mkdir /home/kassa/scripts
+
+# Make python script executable
+sudo chmod +x printer_listener.py
+
+# Copy python script to scripts folder
+sudo cp printer_listener.py /home/kassa/scripts
+
+# Change service permissions
+sudo chmod 644 printerlistener.service
+
+# Copy service file to service folder
+sudo cp printerlistener.service /lib/systemd/system
+
+# Reloading system-ctl
+sudo systemctl daemon-reload
+
+# Enabling service
+sudo systemctl enable printerlistener.service
+
+# Starting service
+sudo systemctl start printerlistener.service
+
+# Show status of service
+sudo systemctl status printerlistener.service
+
 # Create binding folder for postgres image
 sudo mkdir /home/kassa/docker/postgres
 
