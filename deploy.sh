@@ -4,7 +4,10 @@
 sudo apt update && sudo apt upgrade -y
 
 # Install Docker & docker-compose
-sudo apt install docker docker-compose -y
+sudo apt install docker docker-compose python3-pip -y
+
+# Install python packages
+sudo pip3 pyserial
 
 # Create folder for Docker
 sudo mkdir /home/kassa/docker
