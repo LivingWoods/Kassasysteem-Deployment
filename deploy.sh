@@ -16,4 +16,4 @@ sudo cp docker-compose.yml /home/kassa/docker
 sudo mkdir /home/kassa/docker/postgres
 
 # Start up docker images
-sudo cd /home/kassa/docker && sudo docker-compose up -d
+cd /home/kassa/docker && sudo docker-compose up -d
