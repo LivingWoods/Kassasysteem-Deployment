@@ -4,7 +4,7 @@
 sudo apt update && sudo apt upgrade -y
 
 # Install Docker & docker-compose
-sudo apt install docker docker-compose
+sudo apt install docker docker-compose -y
 
 # Create folder for Docker
 sudo mkdir /home/kassa/docker
