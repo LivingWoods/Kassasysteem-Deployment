@@ -7,7 +7,7 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install docker docker-compose python3-pip -y
 
 # Install python packages
-sudo pip3 pyserial
+sudo pip3 install pyserial
 
 # Create folder for Docker
 sudo mkdir /home/kassa/docker
@@ -38,9 +38,6 @@ sudo systemctl enable printerlistener.service
 
 # Starting service
 sudo systemctl start printerlistener.service
-
-# Show status of service
-sudo systemctl status printerlistener.service
 
 # Create binding folder for postgres image
 sudo mkdir /home/kassa/docker/postgres
