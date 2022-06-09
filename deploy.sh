@@ -17,3 +17,9 @@ sudo mkdir /home/kassa/docker/postgres
 
 # Start up docker images
 cd /home/kassa/docker && sudo docker-compose up -d
+
+# Show running docker containers
+sudo docker container ls
+
+# Remove setup
+sudo rm -rf /home/kassa/Kassasysteem-Deployment
