@@ -7,6 +7,7 @@ services:
     environment:
       - POSTGRES_USER=kassa
       - POSTGRES_PASSWORD=goossensDatabase
+      - POSTGRES_DB=KassaDatabase
     volumes:
       - postgres_volume:/var/lib/postgresql/data
     restart: unless-stopped
@@ -43,8 +44,15 @@ services:
   listener:
     image: livingwooods/kassa_listener:latest
     container_name: KassaListener
+    environment:
+      - DATABASE_HOST=KassaDatabase
+      - DATABASE_PORT=5432
+      - DATABASE_NAME="KassaDatabase"
+      - DATABASE_USERNAME=kassa
+      - DATABASE_PASSWORD=goossensDatabase
     ports:
       - 9001:80
+      - 9002:443
 
 volumes:
   postgres_volume:
