@@ -10,7 +10,6 @@ def start(device, port, timeout):
         print('Hey Listen!')
         listen(serialConnection)
 
-
 def listen(serialConnection):
     counter = 1
     while True:
@@ -19,10 +18,9 @@ def listen(serialConnection):
             interfaces = interfaceID.split(',')[:-1]
 
             for interface in interfaces:
-                tellerstand = requests.patch(f'http://192.168.1.213:8005/api/Printer/{interface}')
+                tellerstand = requests.patch(f'http://192.168.1.216:9001/api/Printer/{interface}')
                 print(f'{counter}. Written new tellerstand to interface: {interface}')
                 counter = counter + 1
-
 
 class SerialConnection():
     def __init__(self, device, port, timeout) -> None:
@@ -33,3 +31,5 @@ class SerialConnection():
 
     def isInWaiting(self):
         return self.connection.in_waiting > 0
+
+start('/dev/ttyACM0', 9600, 1)
