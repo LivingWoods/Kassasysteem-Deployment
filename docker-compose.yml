@@ -1,0 +1,55 @@
+version: '3.3'
+
+services:
+  database:
+    image: postgres
+    container_name: KassaDatabase
+    environment:
+      - POSTGRES_USER=kassa
+      - POSTGRES_PASSWORD=goossensDatabase
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+    restart: unless-stopped
+    ports:
+      - 5000:5432
+
+  adminer:
+    image: adminer
+    container_name: KassaDatabaseManagement
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+
+  backend:
+    image: livingwooods/kassa_backend
+    container_name: KassaBackend
+    environment:
+      - NODE_ENV=deployment
+      - DATABASE_CLIENT=pg
+      - DATABASE_NAME=KassaDatabase
+      - DATABASE_HOST=KassaDatabase
+      - DATABASE_PORT=5432
+      - DATABASE_USERNAME=kassa
+      - DATABASE_PASSWORD=goossensDatabase
+    ports:
+      - 9000:9000
+
+  frontend:
+    image: livingwooods/kassa_frontend
+    container_name: KassaFrontend
+    ports:
+      - 3000:80
+
+  listener:
+    image: livingwooods/kassa_listener:latest
+    container_name: KassaListener
+    ports:
+      - 9001:80
+
+volumes:
+  postgres_volume:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/kassa/docker/postgres
